@@ -24,7 +24,7 @@ const Footer = () => {
                 <h3 className="font-bold text-white mb-4">Resources</h3>
                 <ul className="space-y-3">
                   <li><Link to="/docs" className="hover:text-white transition-colors duration-200">Docs</Link></li>
-                  <li><Link to="/blog" className="hover:text-white transition-colors duration-200">Blog</Link></li>
+                  <li><a target="_blank" href="https://xdcoder.hashnode.dev/" className="hover:text-white transition-colors duration-200">Blog</a></li>
                   <li><Link to="/hackathon" className="hover:text-white transition-colors duration-200">Hackathon</Link></li>
                 </ul>
               </div>

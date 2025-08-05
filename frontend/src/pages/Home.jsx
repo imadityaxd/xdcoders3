@@ -1,5 +1,6 @@
 import React from 'react';
 import Blogc from '../components/Blogc';
+import BlogSection from '../components/BlogSection';
 
 // =================================================================
 // HERO COMPONENT FOR XCODERS
@@ -129,6 +130,7 @@ const Hero = () => {
       {/* HERO SECTION END */}
       {/*BLOG SECTION STARTS */}
       <Blogc/>
+      <BlogSection/>
     </>
   );
 };

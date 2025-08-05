@@ -77,12 +77,13 @@ const Blogc = () => {
 
           {/* Explore Button */}
           <div className="text-center mt-16">
-            <Link 
-              to="/blog" 
+            <a
+              target='_blank'
+              href="https://xdcoder.hashnode.dev/" 
               className="bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-600 transition-colors duration-300"
             >
               Explore Blogs
-            </Link>
+            </a>
           </div>
 
         </div>

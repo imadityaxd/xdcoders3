@@ -1,46 +1,65 @@
 // Importing required modules using ES6 syntax
-import express from "express"; // Express framework for building the server
-import dotenv from "dotenv"; // For loading environment variables from a .env file
-import mongoose from "mongoose"; // MongoDB object modeling tool to connect and work with MongoDB
-import blogRoutes from "./routes/blogRoutes.js"; // Routes related to blog operations
-import docsRoutes from "./routes/docsRoutes.js"; // Routes related to documentation
-import hackathonRoutes from "./routes/hackathonRoutes.js"; // Routes for managing hackathon data
-import cors from "cors"; // Middleware to enable Cross-Origin Resource Sharing
-import path from "path"; // Core Node module used for handling file and directory paths
+import express from "express";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import blogRoutes from "./routes/blogRoutes.js";
+import docsRoutes from "./routes/docsRoutes.js";
+import hackathonRoutes from "./routes/hackathonRoutes.js";
+import cors from "cors";
+import path from "path";
+import fetch from "node-fetch"; // You need this to make outgoing requests
 
-// Load environment variables (like PORT and MONGO_URI) from .env file into process.env
+// Load environment variables from .env
 dotenv.config();
 
-// Create an instance of the Express application
 const app = express();
 
-// Enable CORS to allow requests from different origins (e.g., frontend hosted elsewhere)
+// Middleware setup
 app.use(cors());
-
-// Middleware to parse incoming JSON payloads in requests (e.g., req.body)
 app.use(express.json());
 
-// Serve static files from the "uploads" folder when requested at "/uploads" path
-// e.g., accessing /uploads/image.png will serve uploads/image.png
+// Serve uploaded files
 app.use("/uploads", express.static("uploads"));
 
-// Define API routes and associate them with their respective route handlers
-app.use("/api/blogs", blogRoutes); // All blog-related routes will be prefixed with /api/blogs
-app.use("/api/docs", docsRoutes); // All docs-related routes will be prefixed with /api/docs
-app.use("/api/hackathons", hackathonRoutes); // All hackathon-related routes will be prefixed with /api/hackathons
+// API routes
+app.use("/api/blogs", blogRoutes);
+app.use("/api/docs", docsRoutes);
+app.use("/api/hackathons", hackathonRoutes);
 
-// Add this route just to check frontend-backend connection
+// Health check
 app.get("/", (req, res) => {
   res.send("Backend is connected ✅");
 });
 
-// Connect to MongoDB using Mongoose with the URI from the environment variable
+
+// ✅ Proxy route for Hashnode GraphQL API
+app.post("/api/hashnode", async (req, res) => {
+  const { query } = req.body;
+
+  try {
+    const response = await fetch("https://gql.hashnode.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query }),
+    });
+
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error("Error forwarding request to Hashnode:", error);
+    res.status(500).json({ error: "Failed to fetch data from Hashnode" });
+  }
+});
+
+
+// Connect to MongoDB and start server
+const PORT = process.env.PORT || 5000;
+
 mongoose
-  .connect(process.env.MONGO_URI) // Connection string to your MongoDB database
+  .connect(process.env.MONGO_URI)
   .then(() => {
-    // Once connected, start the server and listen on the specified PORT (from .env or default to 5000)
-    app.listen(process.env.PORT || 5000, () => {
-      console.log("Server running on port " + process.env.PORT);
+    app.listen(PORT, () => {
+      console.log(`✅ Server running on http://localhost:${PORT}`);
     });
   })
-  .catch((err) => console.log(err)); // Log any errors that occur during MongoDB connection
+  .catch((err) => console.error("❌ MongoDB connection error:", err));

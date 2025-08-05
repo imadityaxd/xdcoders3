@@ -22,7 +22,7 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-6">
             <NavLink to="/" className={linkClass}>Home</NavLink>
             <NavLink to="/docs" className={linkClass}>Docs</NavLink>
-            <NavLink to="/blog" className={linkClass}>Blog</NavLink>
+            <a target= "_blank" href="https://xdcoder.hashnode.dev/" className=" hover:text-indigo-400">Blog</a>
             <NavLink to="/hackathon" className={linkClass}>Hackathons</NavLink>
           </div>
 
