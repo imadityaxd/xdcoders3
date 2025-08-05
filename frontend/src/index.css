@@ -1,4 +1,48 @@
 @import "tailwindcss";
+
+/* A subtle shadow effect for the main heading to make it pop. */
+.text-shadow-lg {
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Animation: Fade in from top */
+@keyframes fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation: Fade in from bottom */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Utility class to apply the fade-in-down animation. */
+.animate-fade-in-down {
+  animation: fade-in-down 0.8s ease-out forwards;
+}
+
+/* Utility class to apply the fade-in-up animation. */
+/* It starts as invisible (opacity: 0) and the animation makes it visible. */
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

@@ -1,30 +1,51 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const linkClass = ({ isActive }) =>
+    isActive
+      ? 'text-indigo-400 font-semibold'
+      : 'text-white hover:text-indigo-400';
+
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-black text-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo or Brand */}
-          <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-blue-600">XDCoders</Link>
-          </div>
+          {/* Brand */}
+          <NavLink to="/" className="text-2xl font-bold text-white">
+            XDCoders
+          </NavLink>
 
-          {/* Links */}
+          {/* Desktop Links */}
           <div className="hidden md:flex space-x-6">
-            <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium">Home</Link>
-            <Link to="/docs" className="text-gray-700 hover:text-blue-600 font-medium">Docs</Link>
-            <Link to="/blog" className="text-gray-700 hover:text-blue-600 font-medium">Blog</Link>
-            <Link to="/hackathon" className="text-gray-700 hover:text-blue-600 font-medium">Hackathons</Link>
+            <NavLink to="/" className={linkClass}>Home</NavLink>
+            <NavLink to="/docs" className={linkClass}>Docs</NavLink>
+            <NavLink to="/blog" className={linkClass}>Blog</NavLink>
+            <NavLink to="/hackathon" className={linkClass}>Hackathons</NavLink>
           </div>
 
-          {/* Mobile Menu Button (optional, basic) */}
+          {/* Mobile Hamburger */}
           <div className="md:hidden">
-            {/* You can enhance this with hamburger menu */}
-            <button className="text-blue-600 focus:outline-none">☰</button>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-white text-2xl focus:outline-none"
+            >
+              ☰
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden flex flex-col mt-2 space-y-2 pb-4">
+            <NavLink to="/" className={linkClass} onClick={() => setMenuOpen(false)}>Home</NavLink>
+            <NavLink to="/docs" className={linkClass} onClick={() => setMenuOpen(false)}>Docs</NavLink>
+            <NavLink to="/blog" className={linkClass} onClick={() => setMenuOpen(false)}>Blog</NavLink>
+            <NavLink to="/hackathon" className={linkClass} onClick={() => setMenuOpen(false)}>Hackathons</NavLink>
+          </div>
+        )}
       </div>
     </nav>
   );
