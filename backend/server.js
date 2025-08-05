@@ -31,11 +31,9 @@ app.get("/", (req, res) => {
   res.send("Backend is connected ✅");
 });
 
-
 // ✅ Proxy route for Hashnode GraphQL API
 app.post("/api/hashnode", async (req, res) => {
   const { query } = req.body;
-
   try {
     const response = await fetch("https://gql.hashnode.com", {
       method: "POST",
@@ -50,7 +48,6 @@ app.post("/api/hashnode", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch data from Hashnode" });
   }
 });
-
 
 // Connect to MongoDB and start server
 const PORT = process.env.PORT || 5000;

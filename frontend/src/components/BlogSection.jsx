@@ -6,25 +6,26 @@ const BlogSection = () => {
   const [error, setError] = useState(null);
 
   const fetchPosts = async () => {
-    const query = `
-      query {
-        publication(host: "xdcoder.hashnode.dev") {
-          posts(first: 3) {
-            edges {
-              node {
-                title
-                slug
-                brief
-                dateAdded
-                coverImage {
-                  url
-                }
-              }
+  const query = `
+  query {
+    publication(host: "xdcoder.hashnode.dev") {
+      posts(first: 3) {
+        edges {
+          node {
+            title
+            slug
+            brief
+            publishedAt
+            coverImage {
+              url
             }
           }
         }
       }
-    `;
+    }
+  }
+`;
+
 
     try {
       const response = await fetch("http://localhost:5000/api/hashnode", {
