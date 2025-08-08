@@ -22,7 +22,7 @@ const DocsSection = () => {
     useEffect(() => {
         const fetchDocs = async () => {
             try {
-                const res = await fetch("http://localhost:5000/api/docs"); // Call backend API
+                const res = await fetch(`${process.env.REACT_APP_API_URL}/api/docs`); // Call backend API
                 const data = await res.json(); // Parse JSON response
                 setDocs(data); // Save docs to state
             } catch (err) {
