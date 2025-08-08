@@ -133,7 +133,7 @@ const Hero = () => {
       {/*BLOG SECTION STARTS */}
       {/* <Blogc/> */}
       <BlogSection/>
-      <Pdfc/>
+      {/* <Pdfc/> */}
       <DocsSection/>
     </>
   );
