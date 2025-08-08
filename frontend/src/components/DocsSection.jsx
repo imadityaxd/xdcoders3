@@ -3,12 +3,14 @@
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import dotenv from "dotenv";
 /**
  * DocsSection Component
  * - Fetches documents from `/api/docs`
  * - Displays them in a styled card layout
  * - Allows users to download PDFs
  */
+dotenv.config(); // Must be called before using process.env
 const DocsSection = () => {
     // ----------------------------
     // 1️⃣ State Management
