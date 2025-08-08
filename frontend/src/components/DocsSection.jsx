@@ -23,7 +23,8 @@ const DocsSection = () => {
     useEffect(() => {
         const fetchDocs = async () => {
             try {
-                const res = await fetch(`${process.env.VITE_APP_API_URL}/api/docs`); // Call backend API
+                console.log("checking endpoint",import.meta.env.VITE_APP_API_URL );
+                const res = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/docs`); // Call backend API
                 const data = await res.json(); // Parse JSON response
                 setDocs(data); // Save docs to state
             } catch (err) {

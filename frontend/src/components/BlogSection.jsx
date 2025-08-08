@@ -30,7 +30,8 @@ const BlogSection = () => {
 
 
     try {
-      const response = await fetch(`${process.env.VITE_APP_API_URL}/api/hashnode`, {
+      console.log("checking endpoint",import.meta.env.VITE_APP_API_URL );
+      const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/hashnode`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
