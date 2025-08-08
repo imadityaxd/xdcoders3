@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import dotenv from "dotenv";
 
-dotenv.config(); // Must be called before using process.env
+
+
 const BlogSection = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
