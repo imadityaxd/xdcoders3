@@ -30,7 +30,7 @@ const BlogSection = () => {
 
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/hashnode`, {
+      const response = await fetch(`${process.env.VITE_APP_API_URL}/api/hashnode`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
