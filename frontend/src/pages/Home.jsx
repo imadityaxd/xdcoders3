@@ -2,6 +2,7 @@ import React from 'react';
 import Blogc from '../components/Blogc';
 import BlogSection from '../components/BlogSection';
 import Pdfc from '../components/Pdfc';
+import DocsSection from '../components/DocsSection';
 
 // =================================================================
 // HERO COMPONENT FOR XCODERS
@@ -133,6 +134,7 @@ const Hero = () => {
       {/* <Blogc/> */}
       <BlogSection/>
       <Pdfc/>
+      <DocsSection/>
     </>
   );
 };
