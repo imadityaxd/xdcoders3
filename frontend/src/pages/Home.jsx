@@ -114,6 +114,10 @@ const Hero = () => {
           >
             {/* Primary Button */}
             <button
+              onClick={() => {
+      const el = document.getElementById("docs-anchor");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }}
               className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out border-2 border-transparent hover:border-indigo-300"
             >
               Explore Study Notes
@@ -134,6 +138,7 @@ const Hero = () => {
       {/* <Blogc/> */}
       <BlogSection/>
       {/* <Pdfc/> */}
+      <div id="docs-anchor"></div>
       <DocsSection/>
     </>
   );
