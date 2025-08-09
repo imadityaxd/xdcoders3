@@ -41,9 +41,10 @@ const DocsSection = () => {
     // 3️⃣ Render UI
     // ----------------------------
     return (
-        <section className="text-center p-10 bg-gray-900">
+        <section className="text-center p-10 bg-gray-900 ">
+            <div className="max-w-7xl  ">
             {/* Title */}
-            <div className="max-w-7xl mb-12 ">
+            <div className=" mb-12 shadow-xl">
                 <h2 className="text-4xl md:text-5xl font-bold">
                     Fresh <span className="text-indigo-500">docs & resources</span> just for you.
                 </h2>
@@ -107,6 +108,7 @@ const DocsSection = () => {
                             Explore Documents
                         </Link>
                     </div>
+            </div>
         </section>
     );
 };
